@@ -1,0 +1,23 @@
+{
+  "name": "ui-testing-playwright-javascript",
+  "version": "1.0.0",
+  "description": "UI tests in Playwright using javascript",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geethuja/ui-testing-playwright-javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/geethuja/ui-testing-playwright-javascript/issues"
+  },
+  "homepage": "https://github.com/geethuja/ui-testing-playwright-javascript#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.1"
+  }
+}
