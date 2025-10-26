@@ -1,0 +1,29 @@
+{
+  "name": "ui-testing-playwright-javascript",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "UI tests in Playwright using javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:smoke": "npx playwright test --grep smoke",
+    "test:sanity": "npx playwright test --grep sanity",
+    "test:regression": "npx playwright test --grep regression"
+ },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geethuja/ui-testing-playwright-javascript.git"
+  },
+  "keywords": [],
+  "author": "Geethuja Tom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geethuja/ui-testing-playwright-javascript/issues"
+  },
+  "homepage": "https://github.com/geethuja/ui-testing-playwright-javascript#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.1"
+  }
+}
