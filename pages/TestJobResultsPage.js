@@ -1,3 +1,4 @@
+// pages/TestJobResultsPage.js
 export class TestJobResultsPage {
   constructor(page) {
     this.page = page;
@@ -34,19 +35,7 @@ export class TestJobResultsPage {
       throw new Error(`Only found one location: ${uniqueLocations[0]}`);
     }
   }
-/*
-  async verifyAllLocationsAreInNetherlands() {
-    const locations = await this.getAllLocations();
-    const netherlandsPattern = /\b(netherlands?|nederland|nl)\b/i;
-    const invalid = locations.filter(loc => !netherlandsPattern.test(loc));
-
-    if (invalid.length) {
-      throw new Error(`Found non-Netherlands locations: ${invalid.join(', ')}`);
-    }
-    console.log(`All ${locations.length} results are from the Netherlands`);
-  }
-*/
-
+  
   async verifyAllLocationsAreInCountry(country) {
       const locations = await this.getAllLocations();
       const pattern = new RegExp(`\\b(${country}|${country.toLowerCase()}|${country.slice(0,2)})\\b`, 'i');
