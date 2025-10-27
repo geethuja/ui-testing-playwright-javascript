@@ -25,7 +25,7 @@ export class TestJobSearchPage extends BasePage {
     await this.page.keyboard.press('Enter');
     await expect(this.page).toHaveURL(/search/);
     await this.waitForText(this.searchButton, 15000);
-    await this.takeScreenshot('test-jobs-search-results');
+    // await this.takeScreenshot('test-jobs-search-results');
   }
 
   async verifyMultipleLocations() {
@@ -40,7 +40,7 @@ export class TestJobSearchPage extends BasePage {
     await this.safeClick(this.countryButton);
     await this.waitForElement(this.netherlandsCheckbox);
     await this.netherlandsCheckbox.check();
-    await this.takeScreenshot('filter-netherlands');
+    // await this.takeScreenshot('filter-netherlands');
   }
 
   async verifyAllResultsInNetherlands() {
