@@ -33,6 +33,7 @@ utils/
 playwright-reports/
     - index.html
 screenshots
+<img width="251" height="589" alt="image" src="https://github.com/user-attachments/assets/7df87898-6cc9-4cf4-9db6-7282926367d4" />
 
 
 ## Installation & Setup
