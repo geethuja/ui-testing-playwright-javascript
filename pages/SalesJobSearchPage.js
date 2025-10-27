@@ -8,7 +8,7 @@ export class SalesJobSearchPage extends BasePage {
   constructor(page) {
     super(page);
     this.typehead = page.locator('#typehead');
-    this.jobCategory = page.locator(`.au-target.phs-${testData.keywords.salesJob}`);
+    this.jobCategory = page.locator('.au-target.phs-Sales');
     this.refinePanel = page.getByText(testData.messages.refineSearch);
     this.resultCount = page.locator('.result-count.au-target');
     this.categoryFacet = page.locator('label[for="category_phs_0"] span[role="text"]');
@@ -26,7 +26,7 @@ export class SalesJobSearchPage extends BasePage {
     await this.safeClick(this.typehead);
     await this.safeClick(this.jobCategory);
     await expect(this.page).toHaveURL(testData.urls.sales);
-    await this.takeScreenshot('sales-category-page');
+    //await this.takeScreenshot('sales-category-page');
   }
 
   async scrollToRefinePanel() {
@@ -34,7 +34,7 @@ export class SalesJobSearchPage extends BasePage {
     await this.page.locator('#facetInput_0').evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await this.waitForText(this.refinePanel);
     await this.refinePanel.scrollIntoViewIfNeeded();
-    await this.takeScreenshot('refine-panel');
+   //await this.takeScreenshot('refine-panel');
   }
 
   async verifyCategorySelected() {
@@ -56,7 +56,7 @@ export class SalesJobSearchPage extends BasePage {
     await this.safeClick(this.countryAccordion);
     await this.germanyCheckbox.check({ force: true });
     expect(await this.germanyCheckbox.isChecked()).toBeTruthy();
-    await this.takeScreenshot('country-filter-germany');
+    //await this.takeScreenshot('country-filter-germany');
   }
 
   async verifyResultsInGermany() {

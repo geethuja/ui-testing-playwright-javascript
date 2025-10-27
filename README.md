@@ -12,27 +12,27 @@ This framework supports **cross-browser testing**, **Page Object Model (POM)** d
 * Support for **smoke**, **sanity**, and **regression** test groups\
 * Auto screenshots, trace logs, and video on failure\
 * Rich HTML reports\
-* Configurable base URLs, environments, and retries\
-* CI/CD ready (GitHub Actions / Jenkins compatible)
+* Configurable base URLs, environments, and retries
 
 ## Project Structure
 
-Pages/ 
-    - BasePage.js
-    - SalesJobSearchPage.js
-    - TestJobSearchPage.js
-    - TestJobResultsPage.js
+Pages/ \
+    - BasePage.js\
+    - SalesJobSearchPage.js\
+    - TestJobSearchPage.js\
+    - TestJobResultsPage.js\
 tests/
-    - salesJobSearchTest.spec.js
-    - testJobSearchTest.spec.js
-    - smokeTest.spec.js
-testdata/
-    - testData.json
+    - salesJobSearchTest.spec.js\
+    - testJobSearchTest.spec.js\
+    - smokeTest.spec.js\
+testdata/\
+    - testData.json\
 utils/
-    - helpers.js
+    - helpers.js\
 playwright-reports/
-    - index.html
+    - index.html\
 screenshots
+
 <img width="251" height="589" alt="image" src="https://github.com/user-attachments/assets/7df87898-6cc9-4cf4-9db6-7282926367d4" />
 
 
