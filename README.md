@@ -13,6 +13,7 @@ This framework supports **cross-browser testing**, **Page Object Model (POM)** d
 * Auto screenshots, trace logs, and video on failure\
 * Rich HTML reports\
 * Configurable base URLs, environments, and retries
+* CI-CD (Jenkins)
 
 ## Project Structure
 
