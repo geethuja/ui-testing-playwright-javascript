@@ -2,38 +2,56 @@ pipeline {
   agent any
 
   tools {
-    nodejs "node"  // Make sure NodeJS tool is configured in Jenkins (Manage Jenkins > Tools)
+    nodejs "node"
   }
 
   stages {
+    stage('Clean Workspace') {
+      steps {
+        cleanWs()
+      }
+    }
+
     stage('Checkout') {
       steps {
         checkout scm
       }
     }
 
-    stage('Install Dependencies') {
+    stage('Install & Test') {
       steps {
-        sh 'npm ci'
-        sh 'npx playwright install --with-deps'
+        sh '''
+          rm -rf playwright-report allure-results allure-report screenshots videos
+          npm ci
+          npx playwright install --with-deps
+          npx playwright test --reporter=list
+        '''
       }
     }
 
-    stage('Run Tests') {
+    stage('Generate Allure Report') {
       steps {
-        // Run Playwright tests in headless mode
-        sh 'npx playwright test --reporter=list'
+        sh '''
+          npx allure generate allure-results --clean -o allure-report || true
+        '''
       }
     }
 
-    stage('Publish Report') {
+    stage('Publish Reports') {
       steps {
-        // Generate HTML report
-        sh 'npx playwright show-report || true'
+        // Publish Playwright HTML report
         publishHTML(target: [
           reportDir: 'playwright-report',
           reportFiles: 'index.html',
-          reportName: 'Playwright Test Report'
+          reportName: 'Playwright Report'
+        ])
+
+        // Publish Allure report in Jenkins
+        allure([
+          includeProperties: false,
+          jdk: '',
+          results: [[path: 'allure-results']],
+          reportBuildPolicy: 'ALWAYS'
         ])
       }
     }
@@ -42,7 +60,7 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
-      junit 'playwright-report/*.xml'
+      archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
     }
   }
 }
