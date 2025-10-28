@@ -26,7 +26,7 @@ export class BasePage {
     await locator.waitFor({ state: 'visible', timeout });
   }
 
-  async waitForText(locator, timeout = 20000) {
+  async waitForText(locator, timeout = 10000) {
     await waitForText(locator, timeout);
   }
 
