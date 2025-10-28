@@ -8,10 +8,10 @@ import { testData } from '../testdata/testData.js';
 export class TestJobSearchPage extends BasePage {
   constructor(page) {
     super(page);
-    this.typehead = page.locator('#typehead');
+    this.typehead = page.locator('[data-ph-at-id="globalsearch-input"]').first();;
     this.searchButton = page.getByRole('button', { name: 'Search', exact: true });
     this.countryButton = page.locator('button:has-text("Country")');
-    this.netherlandsCheckbox = page.locator('#country_phs_Netherlands2');
+    this.netherlandsCheckbox = page.locator('input[id^="country_phs_Netherlands"]');
   }
 
   async openHomePage() {
@@ -25,7 +25,7 @@ export class TestJobSearchPage extends BasePage {
     await this.page.keyboard.press('Enter');
     await expect(this.page).toHaveURL(/search/);
     await this.waitForText(this.searchButton, 15000);
-    // await this.takeScreenshot('test-jobs-search-results');
+    await this.takeScreenshot('test-jobs-search-results');
   }
 
   async verifyMultipleLocations() {
@@ -36,11 +36,12 @@ export class TestJobSearchPage extends BasePage {
 
   async applyCountryFilterNetherlands() {
     logStep(`Apply country filter = ${testData.countries.NL}`);
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(3000);
     await this.safeClick(this.countryButton);
+    await this.page.waitForLoadState('networkidle');
     await this.waitForElement(this.netherlandsCheckbox);
     await this.netherlandsCheckbox.check();
-    // await this.takeScreenshot('filter-netherlands');
+    await this.takeScreenshot('filter-netherlands');
   }
 
   async verifyAllResultsInNetherlands() {

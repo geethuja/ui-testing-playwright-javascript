@@ -1,16 +1,24 @@
 // pages/TestJobResultsPage.js
+import { expect } from '@playwright/test';
+
 export class TestJobResultsPage {
   constructor(page) {
     this.page = page;
-    this.locationElements = page.locator('.job-location');
+    this.locationElements = page.locator('[data-ph-at-id="job-location"], .job-location');
   }
 
   async getAllLocations() {
-    await this.page.waitForLoadState('networkidle');
-    await this.page.waitForSelector('.job-location', { state: 'attached', timeout: 20000 });
+    const locationLocator = this.page.locator('.job-location');
+
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.waitForTimeout(1000); 
+    await locationLocator.first().scrollIntoViewIfNeeded();
+    await expect(locationLocator.first()).toBeVisible({ timeout: 20000 });
+
     const firstLoc = this.locationElements.first();
     await firstLoc.scrollIntoViewIfNeeded();
     await firstLoc.waitFor({ state: 'visible', timeout: 20000 });
+
     await this.page.screenshot({ path: 'debug-job-locations.png', fullPage: true });
 
     const count = await this.locationElements.count();
